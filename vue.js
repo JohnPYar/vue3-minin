@@ -19,29 +19,47 @@ const App = {
           'Шаг 3',
           'Шаг 4',
           'Шаг 5',
-      ]
+      ],
+      notEnd: true
     }
   },
   methods: {
     prev() {
       // когда нажимаем кнопку назад
+      this.activeIndex -= 1
     },
     reset() {
       // начать заного
+      this.activeIndex = 0
+      this.notEnd = true
     },
-    nextOfFinish() {
+    nextOrFinish() {
       // кнопка вперед или закончить
+      this.activeIndex +=1
     },
     setActive(idx) {
       // когда нажимаем на определенный шаг
       this.activeIndex = idx
-    }
+    },
+    // theEnd(){
+    //   return false
+    // }
   },
   computed: {
     // тут стоит определить несколько свойств:
     // 1. текущий выбранный шаг
     // 2. выключена ли кнопка назад
     // 3. находимся ли мы на последнем шаге
+
+    currentStep(){
+      return this.activeIndex + 1
+    },
+    activeBack(){
+      return this.currentStep === 1
+    },
+    lastStep(){
+      return this.currentStep === 5
+    }
   }
 }
 
